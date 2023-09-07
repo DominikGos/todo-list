@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -14,4 +15,9 @@ use Inertia\Inertia;
 |
 */
 
-Route::inertia('/', 'home');
+Route::inertia('/', 'home')->name('home');
+
+
+Route::group(['as' => 'users.', 'prefix' => '/users'], function() {
+    Route::get('/{id}/tasks', [TaskController::class, 'userTasks'])->name('tasks.index');
+});
