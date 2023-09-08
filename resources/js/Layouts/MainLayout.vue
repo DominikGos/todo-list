@@ -1,7 +1,28 @@
-<script setup></script>
+<script setup>
+import { Link } from "@inertiajs/vue3";
+import NavLink from "../Components/NavLink.vue";
+
+</script>
 
 <template>
-  <nav>navigation</nav>
+  <nav class="w-full shadow-md">
+    <div class="container px-3 flex justify-between flex-nowrap mx-auto">
+      <div>
+        <i class="fa-brands fa-laravel text-2xl p-3 text-cyan-400"></i>
+      </div>
+      <ul class="flex gap-2">                      
+        <li class="h-full">
+          <NavLink :active="route().current('users.get')">Profile</NavLink>
+        </li>      
+        <li class="h-full">
+          <NavLink :active="route().current('login')">Login</NavLink>
+        </li>      
+        <li class="h-full">
+          <NavLink :active="route().current('users.tasks.index')">Tasks</NavLink>
+        </li>      
+      </ul>
+    </div>
+  </nav>
 
   <main>
     <slot> </slot>
