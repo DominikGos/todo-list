@@ -5,7 +5,7 @@ import NavLink from "../Components/NavLink.vue";
 </script>
 
 <template>
-  <nav class="w-full shadow-md">
+  <nav class="w-full shadow-md bg-white">
     <div class="container px-3 flex justify-between flex-nowrap mx-auto">
       <div>
         <i class="fa-brands fa-laravel text-2xl p-3 text-cyan-400"></i>
