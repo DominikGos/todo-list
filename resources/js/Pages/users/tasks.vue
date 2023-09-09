@@ -2,7 +2,7 @@
 import MainLayout from '../../Layouts/MainLayout.vue'
 import PrimaryButton from '../../Components/PrimaryButton.vue';
 import TextArea from '../../Components/TextArea.vue';
-import Input from '../../Components/Input.vue'
+import InputError from '../../Components/InputError.vue';
 
 defineOptions({layout: MainLayout})
 
