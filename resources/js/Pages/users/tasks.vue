@@ -2,11 +2,13 @@
 import MainLayout from '../../Layouts/MainLayout.vue'
 import PrimaryButton from '../../Components/PrimaryButton.vue';
 import TextArea from '../../Components/TextArea.vue';
-import InputError from '../../Components/InputError.vue';
+import SuccessButton from '../../Components/SuccessButton.vue'
+import SecondaryButton from '../../Components/SecondaryButton.vue'
+import Task from '../../Components/Task.vue';
 
-defineOptions({layout: MainLayout})
+defineOptions({ layout: MainLayout })
 
-const props = defineProps({tasks: Array})
+const props = defineProps({ tasks: Array })
 
 </script>
 
@@ -20,10 +22,20 @@ const props = defineProps({tasks: Array})
             Submit
           </PrimaryButton>
         </h4>
-        <div> 
+        <div>
           <TextArea></TextArea>
         </div>
       </form>
     </header>
+    <main class="rounded-xl  p-3">
+      <nav class="flex gap-3">
+        <SuccessButton>Active</SuccessButton>
+        <SecondaryButton>Inactive</SecondaryButton>
+      </nav>
+      <div class="flex flex-col gap-4 mt-3">
+        <Task/>
+        <Task :active="false" />
+      </div>
+    </main>
   </div>
 </template>
