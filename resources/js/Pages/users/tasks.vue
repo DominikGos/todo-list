@@ -1,6 +1,8 @@
 <script setup>
 import MainLayout from '../../Layouts/MainLayout.vue'
 import PrimaryButton from '../../Components/PrimaryButton.vue';
+import TextArea from '../../Components/TextArea.vue';
+import Input from '../../Components/Input.vue'
 
 defineOptions({layout: MainLayout})
 
@@ -19,7 +21,7 @@ const props = defineProps({tasks: Array})
           </PrimaryButton>
         </h4>
         <div> 
-          <textarea rows="3" class="w-full bg-gray-100 rounded-md focus:bg-white"></textarea>
+          <TextArea></TextArea>
         </div>
       </form>
     </header>
