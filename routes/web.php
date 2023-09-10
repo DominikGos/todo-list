@@ -31,11 +31,16 @@ Route::group(['middleware' => 'guest'], function() {
 });
 
 
-Route::group(['middleware' => 'auth'], function() {
+Route::middleware('auth')->group(function() {
     Route::group(['as' => 'users.', 'prefix' => '/users'], function() {
         Route::get('/{id}/tasks', [TaskController::class, 'userTasks'])->name('tasks.index');
     });
 });
-
+/* Route::group(['middleware' => 'auth'], function() {
+    Route::group(['as' => 'users.', 'prefix' => '/users'], function() {
+        Route::get('/{id}/tasks', [TaskController::class, 'userTasks'])->name('tasks.index');
+    });
+});
+ */
 
 

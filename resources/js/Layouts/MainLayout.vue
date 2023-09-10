@@ -10,16 +10,20 @@ import NavLink from "../Components/NavLink.vue";
       <div>
         <i class="fa-brands fa-laravel text-2xl p-3 text-cyan-400"></i>
       </div>
-      <ul class="flex gap-2">                      
-        <li class="h-full">
+      <ul class="flex gap-2">
+        <li v-if="$page.props.auth.user" class="h-full">
           <NavLink :active="route().current('users.get')">Profile</NavLink>
-        </li>      
-        <li class="h-full">
-          <NavLink :href="route('users.tasks.index', {id: 1})" :active="route().current('users.tasks.index')">Tasks</NavLink>
-        </li>      
-        <li class="h-full">
+        </li>
+        <li v-if="$page.props.auth.user" class="h-full">
+          <NavLink :href="route('users.tasks.index', { id: 1 })" :active="route().current('users.tasks.index')">Tasks
+          </NavLink>
+        </li>
+        <li v-if="!$page.props.auth.user" class="h-full">
+          <NavLink :href="route('register.page')" :active="route().current('register.page')">Register</NavLink>
+        </li>
+        <li v-if="!$page.props.auth.user" class="h-full">
           <NavLink :href="route('login.page')" :active="route().current('login.page')">Login</NavLink>
-        </li>      
+        </li>
       </ul>
     </div>
   </nav>

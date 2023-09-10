@@ -18,5 +18,7 @@ class LoginController extends Controller
             return redirect(route('users.tasks.index', ['id' => Auth::id()]))
                 ->with('flash_message', 'You have been logged in.');
         }
+
+        return back()->withErrors(['email' => 'Incorrect password or email.']);
     }
 }
