@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Auth;
@@ -20,9 +21,9 @@ use Inertia\Inertia;
 Route::inertia('/', 'home')->name('home');
 
 Route::group(['middleware' => 'guest'], function() {
-    Route::get('/login', function() {
-        
-    })->name('login.page');
+    Route::inertia('/login', 'Auth/Login')->name('login.page');
+
+    Route::post('/login', [LoginController::class, 'login'])->name('login');
     
     Route::inertia('/register', 'Auth/Register')->name('register.page');
     

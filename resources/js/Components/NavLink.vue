@@ -26,7 +26,7 @@ const classes = computed(() => {
 </script>
 
 <template>
-  <Link :href="'/'" :class="classes">
+  <Link :href="props.href" :class="classes">
   <slot></slot>
   </link>
 </template>

@@ -9,7 +9,6 @@ import { Link, useForm } from '@inertiajs/vue3';
 defineOptions({ layout: MainLayout });
 
 const form = useForm({
-  name: '',
   email: '',
   password: ''
 })
@@ -17,30 +16,25 @@ const form = useForm({
 
 <template>
   <div class="container mx-auto mt-3 p-3">
-    <form @submit.prevent="form.post(route('register'))" class="flex flex-col gap-3 p-3 bg-white rounded-xl shadow-md">
+    <form @submit.prevent="form.post(route('login'))" class="flex flex-col gap-3 p-3 bg-white rounded-xl shadow-md">
       <h3 class="text-xl mx-auto">Todo app</h3>
-      <p class="text-sm text-gray-400">Register in the application</p>
-      <div>
-        <InputLabel :value="'Name'" />
-        <Input v-model="form.name"/>
-        <InputError :message="form.errors.name"/>
-      </div>
+      <p class="text-sm text-gray-400">Log into the app</p>
       <div>
         <InputLabel :value="'E-mail'" />
         <Input v-model="form.email" :type="'email'" />
-        <InputError :message="form.errors.email"/>
+        <InputError :message="form.errors.email" />
       </div>
       <div>
         <InputLabel :value="'Password'" />
         <Input v-model="form.password" :type="'password'" />
-        <InputError :message="form.errors.password"/>
+        <InputError :message="form.errors.password" />
       </div>
       <div>
-        <PrimaryButton :type="'submit'">Register</PrimaryButton>
+        <PrimaryButton :type="'submit'">Login</PrimaryButton>
       </div>
       <div class="flex items-center gap-2">
-        <p class="text-sm text-gray-400">Already have an account?</p>
-        <Link :href="route('login.page')"><b class="text-cyan-400">Login</b></Link>
+        <p class="text-sm text-gray-400">You dont have an account yet?</p>
+        <Link :href="route('register.page')"><b class="text-cyan-400">Register</b></Link>
       </div>
     </form>
   </div>

@@ -15,10 +15,10 @@ import NavLink from "../Components/NavLink.vue";
           <NavLink :active="route().current('users.get')">Profile</NavLink>
         </li>      
         <li class="h-full">
-          <NavLink :active="route().current('login')">Login</NavLink>
+          <NavLink :href="route('users.tasks.index', {id: 1})" :active="route().current('users.tasks.index')">Tasks</NavLink>
         </li>      
         <li class="h-full">
-          <NavLink :active="route().current('users.tasks.index')">Tasks</NavLink>
+          <NavLink :href="route('login.page')" :active="route().current('login.page')">Login</NavLink>
         </li>      
       </ul>
     </div>
