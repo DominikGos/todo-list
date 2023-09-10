@@ -11,12 +11,11 @@ import { usePage } from '@inertiajs/vue3';
 defineOptions({ layout: MainLayout })
 
 const props = defineProps({ tasks: Array })
-const flashMessage = usePage().props.flash.message 
 </script>
 
 <template>
   <div class="container mx-auto flex flex-col gap-5 p-3 mt-3">
-    <FlashMessage>{{ flashMessage }}</FlashMessage>
+    <FlashMessage class="mb-2" v-if="$page.props.flash.message">{{ $page.props.flash.message }}</FlashMessage>
     <header class="rounded-xl bg-white shadow-md p-3">
       <form class="flex flex-col gap-3">
         <h4 class="flex justify-between items-center">

@@ -4,7 +4,8 @@ import Input from '../../Components/Input.vue';
 import InputError from '../../Components/InputError.vue';
 import InputLabel from '../../Components/InputLabel.vue';
 import PrimaryButton from '../../Components/PrimaryButton.vue';
-import { Link, useForm } from '@inertiajs/vue3';
+import Flashmessage from '../../components/flashmessage.vue';
+import { Link, useForm, usePage } from '@inertiajs/vue3';
 
 defineOptions({ layout: MainLayout });
 
@@ -16,6 +17,7 @@ const form = useForm({
 
 <template>
   <div class="container mx-auto mt-3 p-3">
+    <Flashmessage class="mb-2" v-if="$page.props.flash.message">{{ $page.props.flash.message }}</Flashmessage>
     <form @submit.prevent="form.post(route('login'))" class="flex flex-col gap-3 p-3 bg-white rounded-xl shadow-md">
       <h3 class="text-xl mx-auto">Todo app</h3>
       <p class="text-sm text-gray-400">Log into the app</p>

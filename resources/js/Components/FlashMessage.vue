@@ -11,6 +11,6 @@ setTimeout(() => {
 
 <template>
   <div v-if="showMessage" class="bg-emerald-400 p-3 rounded-md text-white">
-    You have been logged in
+    <slot></slot>
   </div>
 </template>
