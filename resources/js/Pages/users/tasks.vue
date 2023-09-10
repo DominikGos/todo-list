@@ -4,16 +4,19 @@ import PrimaryButton from '../../Components/PrimaryButton.vue';
 import TextArea from '../../Components/TextArea.vue';
 import SuccessButton from '../../Components/SuccessButton.vue'
 import SecondaryButton from '../../Components/SecondaryButton.vue'
+import FlashMessage from '../../Components/FlashMessage.vue'
 import Task from '../../Components/Task.vue';
+import { usePage } from '@inertiajs/vue3';
 
 defineOptions({ layout: MainLayout })
 
 const props = defineProps({ tasks: Array })
-
+const flashMessage = usePage().props.flash.message 
 </script>
 
 <template>
   <div class="container mx-auto flex flex-col gap-5 p-3 mt-3">
+    <FlashMessage>{{ flashMessage }}</FlashMessage>
     <header class="rounded-xl bg-white shadow-md p-3">
       <form class="flex flex-col gap-3">
         <h4 class="flex justify-between items-center">

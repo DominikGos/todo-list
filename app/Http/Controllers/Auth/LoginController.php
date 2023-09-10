@@ -15,7 +15,8 @@ class LoginController extends Controller
         if(Auth::attempt($request->validated())) {
             $request->session()->regenerate();
 
-            return to_route('users.tasks.index', ['id' => Auth::id()]);
+            return redirect(route('users.tasks.index', ['id' => Auth::id()]))
+                ->with('flash_message', 'You have been logged in.');
         }
     }
 }
