@@ -33,7 +33,7 @@ const storeTask = () => {
       <form @submit.prevent="storeTask" class="flex flex-col gap-3">
         <h4 class="flex justify-between items-center">
           Type note
-          <PrimaryButton :type="'submit'">
+          <PrimaryButton :type="'submit'" :disabled="form.processing">
             Submit
           </PrimaryButton>
         </h4>

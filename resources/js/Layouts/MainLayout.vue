@@ -15,7 +15,7 @@ import LogoutForm from '../Components/LogoutForm.vue'
           <NavLink :active="route().current('users.get')">Profile</NavLink>
         </li>
         <li v-if="$page.props.auth.user" class="h-full">
-          <NavLink :href="route('users.tasks.index', { id: 1 })" :active="route().current('users.tasks.index')">Tasks
+          <NavLink :href="route('users.tasks.index', { id: $page.props.auth.user })" :active="route().current('users.tasks.index')">Tasks
           </NavLink>
         </li>
         <li v-if="!$page.props.auth.user" class="h-full">
