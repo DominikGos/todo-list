@@ -18,8 +18,6 @@ use Inertia\Inertia;
 |
 */
 
-Route::inertia('/', 'home')->name('home');
-
 Route::group(['middleware' => 'guest'], function() {
     Route::inertia('/login', 'Auth/Login')->name('login.page');
 
@@ -30,17 +28,13 @@ Route::group(['middleware' => 'guest'], function() {
     Route::post('/register', [RegisterController::class, 'register'])->name('register');
 });
 
+Route::group(['middleware' => 'auth'], function() {
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    
+    Route::group(['as' => 'users.', 'prefix' => '/users'], function() {
+        Route::get('/{id}/tasks', [TaskController::class, 'userTasks'])->name('tasks.index');
+    });
+});
 
-Route::middleware('auth')->group(function() {
-    Route::group(['as' => 'users.', 'prefix' => '/users'], function() {
-        Route::get('/{id}/tasks', [TaskController::class, 'userTasks'])->name('tasks.index');
-    });
-});
-/* Route::group(['middleware' => 'auth'], function() {
-    Route::group(['as' => 'users.', 'prefix' => '/users'], function() {
-        Route::get('/{id}/tasks', [TaskController::class, 'userTasks'])->name('tasks.index');
-    });
-});
- */
 
 

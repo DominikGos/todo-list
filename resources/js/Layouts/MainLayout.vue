@@ -1,7 +1,7 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
 import NavLink from "../Components/NavLink.vue";
-
+import LogoutForm from '../Components/LogoutForm.vue'
 </script>
 
 <template>
@@ -23,6 +23,9 @@ import NavLink from "../Components/NavLink.vue";
         </li>
         <li v-if="!$page.props.auth.user" class="h-full">
           <NavLink :href="route('login.page')" :active="route().current('login.page')">Login</NavLink>
+        </li>
+        <li v-if="$page.props.auth.user" class="h-full flex items-center">
+          <LogoutForm/>
         </li>
       </ul>
     </div>
