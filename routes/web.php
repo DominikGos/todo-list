@@ -22,17 +22,21 @@ Route::group(['middleware' => 'guest'], function() {
     Route::inertia('/login', 'Auth/Login')->name('login.page');
 
     Route::post('/login', [LoginController::class, 'login'])->name('login');
-    
+
     Route::inertia('/register', 'Auth/Register')->name('register.page');
-    
+
     Route::post('/register', [RegisterController::class, 'register'])->name('register');
 });
 
 Route::group(['middleware' => 'auth'], function() {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-    
+
     Route::group(['as' => 'users.', 'prefix' => '/users'], function() {
         Route::get('/{id}/tasks', [TaskController::class, 'userTasks'])->name('tasks.index');
+    });
+
+    Route::group(['as' => 'tasks.', 'prefix' => '/tasks'], function() {
+        Route::post('/tasks', [TaskController::class, 'store'])->name('store');
     });
 });
 

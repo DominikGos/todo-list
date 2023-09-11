@@ -6,18 +6,22 @@ import SuccessButton from '../../Components/SuccessButton.vue'
 import SecondaryButton from '../../Components/SecondaryButton.vue'
 import FlashMessage from '../../Components/FlashMessage.vue'
 import Task from '../../Components/Task.vue';
-import { usePage } from '@inertiajs/vue3';
+import InputError from '../../Components/InputError.vue'
+import { router, useForm, usePage } from '@inertiajs/vue3';
 
 defineOptions({ layout: MainLayout })
 
 const props = defineProps({ tasks: Array })
+const form = useForm({
+  content: ''
+})
 </script>
 
 <template>
   <div class="container mx-auto flex flex-col gap-5 p-3 mt-3">
     <FlashMessage class="mb-2" v-if="$page.props.flash.message">{{ $page.props.flash.message }}</FlashMessage>
     <header class="rounded-xl bg-white shadow-md p-3">
-      <form class="flex flex-col gap-3">
+      <form @submit.prevent="form.post(route('tasks.store'))" class="flex flex-col gap-3">
         <h4 class="flex justify-between items-center">
           Type note
           <PrimaryButton :type="'submit'">
@@ -25,7 +29,8 @@ const props = defineProps({ tasks: Array })
           </PrimaryButton>
         </h4>
         <div>
-          <TextArea></TextArea>
+          <TextArea v-model="form.content"></TextArea>
+          <InputError :message="form.errors.content" />
         </div>
       </form>
     </header>
@@ -35,7 +40,7 @@ const props = defineProps({ tasks: Array })
         <SecondaryButton>Inactive</SecondaryButton>
       </nav>
       <div class="flex flex-col gap-4 mt-3">
-        <Task/>
+        <Task />
         <Task :active="false" />
       </div>
     </main>
