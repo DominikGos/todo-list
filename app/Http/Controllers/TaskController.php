@@ -15,7 +15,7 @@ class TaskController extends Controller
     public function userTasks(int $userId): Response
     {
         //add authorization
-        $tasks = User::findOrFail($userId)->tasks;
+        $tasks = User::findOrFail($userId)->tasks()->orderBy('id', 'desc')->get();
 
         return Inertia::render('Users/Tasks', [
             'tasks' => $tasks

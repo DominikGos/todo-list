@@ -16,13 +16,21 @@ const form = useForm({
   content: ''
 })
 
+const storeTask = () => {
+  form.post(route('tasks.store'), {
+    onSuccess: () => {
+      form.reset('content')
+    }
+  })
+}
+
 </script>
 
 <template>
   <div class="container mx-auto flex flex-col gap-5 p-3 mt-3">
     <FlashMessage class="mb-2" v-if="$page.props.flash.message">{{ $page.props.flash.message }}</FlashMessage>
     <header class="rounded-xl bg-white shadow-md p-3">
-      <form @submit.prevent="form.post(route('tasks.store'))" class="flex flex-col gap-3">
+      <form @submit.prevent="storeTask" class="flex flex-col gap-3">
         <h4 class="flex justify-between items-center">
           Type note
           <PrimaryButton :type="'submit'">
@@ -41,7 +49,8 @@ const form = useForm({
         <SecondaryButton>Inactive</SecondaryButton>
       </nav>
       <div class="flex flex-col gap-4 mt-3">
-        <Task v-for="task in props.tasks" v-bind:key="task.id" :task="task"/>
+        <h2 v-if="props.tasks.length <= 0">You have no any tasks.</h2>
+        <Task v-else v-for="task in props.tasks" v-bind:key="task.id" :task="task" />
       </div>
     </main>
   </div>
