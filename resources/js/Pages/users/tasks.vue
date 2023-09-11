@@ -15,6 +15,7 @@ const props = defineProps({ tasks: Array })
 const form = useForm({
   content: ''
 })
+
 </script>
 
 <template>
@@ -40,8 +41,7 @@ const form = useForm({
         <SecondaryButton>Inactive</SecondaryButton>
       </nav>
       <div class="flex flex-col gap-4 mt-3">
-        <Task />
-        <Task :active="false" />
+        <Task v-for="task in props.tasks" v-bind:key="task.id" :task="task"/>
       </div>
     </main>
   </div>
