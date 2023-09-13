@@ -5,7 +5,7 @@ import TextArea from '../../Components/TextArea.vue';
 import SuccessButton from '../../Components/SuccessButton.vue'
 import SecondaryButton from '../../Components/SecondaryButton.vue'
 import FlashMessage from '../../Components/FlashMessage.vue'
-import Task from '../../Components/Task.vue';
+import Task from '../../Components/Task/Task.vue';
 import InputError from '../../Components/InputError.vue'
 import EditForm from '../../Components/Task/EditForm.vue';
 import { ref } from 'vue'
