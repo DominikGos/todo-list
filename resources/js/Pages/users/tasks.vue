@@ -7,11 +7,14 @@ import SecondaryButton from '../../Components/SecondaryButton.vue'
 import FlashMessage from '../../Components/FlashMessage.vue'
 import Task from '../../Components/Task.vue';
 import InputError from '../../Components/InputError.vue'
-import { router, useForm, usePage } from '@inertiajs/vue3';
+import EditForm from '../../Components/Task/EditForm.vue';
+import { ref } from 'vue'
+import { useForm } from '@inertiajs/vue3';
 
 defineOptions({ layout: MainLayout })
 
 const props = defineProps({ tasks: Array })
+const editForm = ref(null)
 const form = useForm({
   content: ''
 })
@@ -23,11 +26,11 @@ const storeTask = () => {
     }
   })
 }
-
 </script>
 
 <template>
   <div class="container mx-auto flex flex-col gap-5 p-3 mt-3">
+    <EditForm ref="editForm" />
     <FlashMessage class="mb-2" v-if="$page.props.flash.message">{{ $page.props.flash.message }}</FlashMessage>
     <header class="rounded-xl bg-white shadow-md p-3">
       <form @submit.prevent="storeTask" class="flex flex-col gap-3">
@@ -50,7 +53,7 @@ const storeTask = () => {
       </nav>
       <div class="flex flex-col gap-4 mt-3">
         <h2 v-if="props.tasks.length <= 0">You have no any tasks.</h2>
-        <Task v-else v-for="task in props.tasks" v-bind:key="task.id" :task="task" />
+        <Task v-else v-for="task in props.tasks" v-bind:key="task.id" :task="task" @click="editForm.showTask(task)"/>
       </div>
     </main>
   </div>
