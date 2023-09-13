@@ -37,6 +37,8 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::group(['as' => 'tasks.', 'prefix' => '/tasks'], function() {
         Route::post('/tasks', [TaskController::class, 'store'])->name('store');
+
+        Route::put('/tasks/{id}', [TaskController::class, 'update'])->name('update');
     });
 });
 
