@@ -6,6 +6,7 @@ import InputError from '../InputError.vue';
 import InputLabel from '../InputLabel.vue'
 import PrimaryButton from '../PrimaryButton.vue';
 import { useForm } from '@inertiajs/vue3';
+import DangerButton from '../DangerButton.vue';
 
 const taskIsActive = ref(false)
 const task = ref({})
@@ -14,8 +15,16 @@ let form = useForm({
   is_done: task.value.is_done
 })
 
+const destroyTask = () => {
+  form.delete(route('tasks.destroy', { id: task.value.id }), {
+    onSuccess: () => {
+      taskIsActive.value = false
+    }
+  })
+}
+
 const editTask = () => {
-  form.put(route('tasks.update', {'id': task.value.id}), {
+  form.put(route('tasks.update', { id: task.value.id }), {
     onSuccess: () => {
       taskIsActive.value = false
     }
@@ -24,13 +33,13 @@ const editTask = () => {
 
 const showTask = (taskObject) => {
   task.value = taskObject
-  form = {...form, ...task.value}
+  form = { ...form, ...task.value }
   taskIsActive.value = true
 }
 
 const hideTask = () => {
   task.value = {}
-  form = {...form, ...task.value}
+  form = { ...form, ...task.value }
   taskIsActive.value = false
 }
 
@@ -56,9 +65,16 @@ defineExpose({
         <TextArea :value="form.content" v-model="form.content"></TextArea>
         <InputError :message="form.errors.content" />
       </div>
-      <div class="flex gap-2">
-        <InputLabel>Set as done</InputLabel>
-        <input type="checkbox" v-model="form.is_done" :checked="form.is_done">
+      <div class="flex justify-between items-center">
+        <div class="flex gap-2">
+          <InputLabel>Set as done</InputLabel>
+          <input type="checkbox" v-model="form.is_done" :checked="form.is_done">
+        </div>
+        <div>
+          <DangerButton @click="destroyTask">
+            Delete
+          </DangerButton>
+        </div>
       </div>
       <p class="text-sm">
         {{ task.created_at }}

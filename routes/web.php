@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/tasks', [TaskController::class, 'store'])->name('store');
 
         Route::put('/tasks/{id}', [TaskController::class, 'update'])->name('update');
+        
+        Route::delete('/tasks/{id}', [TaskController::class, 'destroy'])->name('destroy');
     });
 });
 

@@ -42,4 +42,13 @@ class TaskController extends Controller
         return redirect(route('users.tasks.index', ['id' => Auth::id()]))
             ->with('flash_message', 'Updated task.');
     }
+    
+    public function destroy(int $id): RedirectResponse
+    {
+        $task = Task::findOrFail($id);
+        $task->delete();
+
+        return redirect(route('users.tasks.index', ['id' => Auth::id()]))
+            ->with('flash_message', 'Removed task.');
+    }
 }
