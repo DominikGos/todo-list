@@ -58,7 +58,7 @@ defineExpose({
           <span v-else class="text-green-500">active</span>
         </p>
         <PrimaryButton :type="'submit'" :disabled="form.processing">
-          Edit
+          Update
         </PrimaryButton>
       </h4>
       <div>

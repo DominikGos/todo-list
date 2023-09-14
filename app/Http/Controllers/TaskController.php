@@ -15,8 +15,8 @@ class TaskController extends Controller
 {
     public function userTasks(int $userId): Response
     {
-        //add authorization
         $tasks = User::findOrFail($userId)->tasks()->orderBy('id', 'desc')->get();
+        $this->authorize('manageTask', $tasks[0]);
 
         return Inertia::render('Users/Tasks', [
             'tasks' => $tasks
@@ -36,6 +36,7 @@ class TaskController extends Controller
     public function update(UpdateTaskRequest $request, int $id): RedirectResponse
     {
         $task = Task::findOrFail($id);
+        $this->authorize('manageTask', $task);
         $task->update($request->validated());
         $task->save();
 
@@ -46,6 +47,7 @@ class TaskController extends Controller
     public function destroy(int $id): RedirectResponse
     {
         $task = Task::findOrFail($id);
+        $this->authorize('manageTask', $task);
         $task->delete();
 
         return redirect(route('users.tasks.index', ['id' => Auth::id()]))
