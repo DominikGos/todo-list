@@ -18,7 +18,7 @@ const form = useForm({
 <template>
   <div class="container mx-auto mt-3 p-3">
     <Flashmessage class="mb-2" v-if="$page.props.flash.message">{{ $page.props.flash.message }}</Flashmessage>
-    <form @submit.prevent="form.post(route('login'))" class="flex flex-col gap-3 p-3 bg-white rounded-xl shadow-md">
+    <form @submit.prevent="form.post(route('login'))" class="flex flex-col gap-3 p-3 bg-white rounded-xl shadow-md lg:w-96 mx-auto">
       <h3 class="text-xl mx-auto">Todo app</h3>
       <p class="text-sm text-gray-400">Log into the app</p>
       <div>
