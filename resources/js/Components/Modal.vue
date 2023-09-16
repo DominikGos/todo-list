@@ -15,7 +15,7 @@ const backgroundClasses = computed(() => {
     props.active 
       ? 'backdrop-brightness-50 visible opacity-100'
       : 'backdrop-brightness-100  invisible opacity-0' 
-      , ' mx-auto p-3 w-screen h-screen fixed top-0 right-0 left left-0 transition-all duration-500 '
+      , 'mx-auto p-3 w-screen h-screen fixed top-0 right-0 left left-0 transition-all duration-500 '
   ] 
 })
 
@@ -24,7 +24,7 @@ const bodyClasses = computed(() => {
     props.active 
       ? 'translate-y-0 opacity-100'
       : 'translate-y-6 opacity-0'
-      , 'mt-5 bg-white rounded-md shadow-md p-3 transition-all duration-500'
+      , 'mt-5 bg-white rounded-md shadow-md p-3 transition-all duration-500 lg:w-96 mx-auto'
   ] 
 })
 

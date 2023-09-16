@@ -9,7 +9,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="flex justify-between items-center gap-2 p-3 bg-white rounded-full shadow-md">
+  <div class="flex justify-between items-center gap-2 p-3 bg-white rounded-full shadow-md hover:cursor-pointer hover:shadow-lg transition-all duration-500">
     <p :class="[props.task.is_done ? 'text-gray-400 line-through' : '', 'truncate w-5/6']">{{ props.task.content }}</p>
     <button
       :class="[props.task.is_done ? 'bg-green-500' : 'bg-gray-300', 'rounded-full w-5 h-5 flex justify-center items-center hover:cursor-pointer']">
