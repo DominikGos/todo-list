@@ -16,7 +16,10 @@ class TaskController extends Controller
     public function userTasks(int $userId): Response
     {
         $tasks = User::findOrFail($userId)->tasks()->orderBy('id', 'desc')->get();
-        $this->authorize('manageTask', $tasks[0]);
+        
+        if(isset($tasks[0])) {
+            $this->authorize('manageTask', $tasks[0]);
+        }
 
         return Inertia::render('Users/Tasks', [
             'tasks' => $tasks

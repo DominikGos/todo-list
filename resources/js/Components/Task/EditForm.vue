@@ -71,7 +71,7 @@ defineExpose({
           <input type="checkbox" v-model="form.is_done" :checked="form.is_done">
         </div>
         <div>
-          <DangerButton @click="destroyTask">
+          <DangerButton @click="destroyTask" :disabled="form.processing">
             Delete
           </DangerButton>
         </div>

@@ -2,13 +2,11 @@
 import MainLayout from '../../Layouts/MainLayout.vue'
 import PrimaryButton from '../../Components/PrimaryButton.vue';
 import TextArea from '../../Components/TextArea.vue';
-import SuccessButton from '../../Components/SuccessButton.vue'
-import SecondaryButton from '../../Components/SecondaryButton.vue'
 import FlashMessage from '../../Components/FlashMessage.vue'
-import Task from '../../Components/Task/Task.vue';
 import InputError from '../../Components/InputError.vue'
 import EditForm from '../../Components/Task/EditForm.vue';
-import { ref } from 'vue'
+import TaskList from '../../Components/Task/TaskList.vue'
+import { ref, onMounted } from 'vue'
 import { useForm } from '@inertiajs/vue3';
 
 defineOptions({ layout: MainLayout })
@@ -26,6 +24,7 @@ const storeTask = () => {
     }
   })
 }
+
 </script>
 
 <template>
@@ -42,19 +41,10 @@ const storeTask = () => {
         </h4>
         <div>
           <TextArea v-model="form.content"></TextArea>
-          <InputError :message="form.errors.content" />
+          <InputError :message="form.errors.content"/>
         </div>
       </form>
     </header>
-    <main class="rounded-xl  p-3">
-      <nav class="flex gap-3">
-        <SuccessButton>Active</SuccessButton>
-        <SecondaryButton>Inactive</SecondaryButton>
-      </nav>
-      <div class="flex flex-col gap-4 mt-3">
-        <h2 v-if="props.tasks.length <= 0">You have no any tasks.</h2>
-        <Task v-else v-for="task in props.tasks" v-bind:key="task.id" :task="task" @click="editForm.showTask(task)"/>
-      </div>
-    </main>
+    <TaskList :tasks="props.tasks" v-if="editForm" @showEditForm="editForm.showTask"/>
   </div>
 </template>
