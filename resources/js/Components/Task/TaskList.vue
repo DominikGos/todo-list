@@ -39,7 +39,9 @@ const setAllTasks = () => {
     </nav>
     <div class="flex flex-col gap-4 mt-3">
       <h2 v-if="props.tasks.length <= 0">You have no any tasks.</h2>
-      <Task v-else v-for="task in tasks" v-bind:key="task.id" :task="task" @click="$emit('showEditForm', task)"/>
+      <TransitionGroup v-else name="list">
+        <Task v-for="task in tasks" v-bind:key="task.id" :task="task" @click="$emit('showEditForm', task)"/>
+      </TransitionGroup>
     </div>
   </div>
 </template>
