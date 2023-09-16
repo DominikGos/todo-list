@@ -11,8 +11,8 @@ import LogoutForm from '../Components/LogoutForm.vue'
         <i class="fa-brands fa-laravel text-2xl p-3 text-cyan-400"></i>
       </div>
       <ul class="flex gap-2">
-        <li v-if="$page.props.auth.user" class="h-full">
-          <NavLink :active="route().current('users.get')">Profile</NavLink>
+        <li class="h-full">
+          <NavLink :href="route('home')" :active="route().current('home')">Home</NavLink>
         </li>
         <li v-if="$page.props.auth.user" class="h-full">
           <NavLink :href="route('users.tasks.index', { id: $page.props.auth.user })" :active="route().current('users.tasks.index')">Tasks

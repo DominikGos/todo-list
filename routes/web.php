@@ -18,6 +18,8 @@ use Inertia\Inertia;
 |
 */
 
+Route::inertia('/', 'Home')->name('home');
+
 Route::group(['middleware' => 'guest'], function() {
     Route::inertia('/login', 'Auth/Login')->name('login.page');
 
