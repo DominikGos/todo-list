@@ -28,23 +28,25 @@ const storeTask = () => {
 </script>
 
 <template>
-  <div class="container mx-auto flex flex-col gap-5 p-3 mt-3">
-    <EditForm ref="editForm" />
-    <FlashMessage class="mb-2" v-if="$page.props.flash.message">{{ $page.props.flash.message }}</FlashMessage>
-    <header class="rounded-xl bg-white shadow-md p-3">
-      <form @submit.prevent="storeTask" class="flex flex-col gap-3">
-        <h4 class="flex justify-between items-center">
-          Type note
-          <PrimaryButton :type="'submit'" :disabled="form.processing">
-            Submit
-          </PrimaryButton>
-        </h4>
-        <div>
-          <TextArea v-model="form.content"></TextArea>
-          <InputError :message="form.errors.content"/>
-        </div>
-      </form>
-    </header>
-    <TaskList :tasks="props.tasks" v-if="editForm" @showEditForm="editForm.showTask"/>
+  <div class="container mx-auto flex flex-col lg:flex-row lg:justify-center gap-5 p-3 mt-3">
+    <EditForm ref="editForm"/>
+    <div class="flex flex-col gap-5 lg:w-4/12">
+      <FlashMessage class="mb-2" v-if="$page.props.flash.message">{{ $page.props.flash.message }}</FlashMessage>
+      <header class="rounded-xl bg-white shadow-md p-3">
+        <form @submit.prevent="storeTask" class="flex flex-col gap-3">
+          <h4 class="flex justify-between items-center">
+            Type note
+            <PrimaryButton :type="'submit'" :disabled="form.processing">
+              Submit
+            </PrimaryButton>
+          </h4>
+          <div>
+            <TextArea v-model="form.content"></TextArea>
+            <InputError :message="form.errors.content"/>
+          </div>
+        </form>
+      </header>
+    </div>
+    <TaskList :tasks="props.tasks" v-if="editForm" @showEditForm="editForm.showTask" class="lg:w-6/12"/>
   </div>
 </template>
