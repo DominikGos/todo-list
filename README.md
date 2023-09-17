@@ -17,3 +17,7 @@ I made this project because I wanted to learn how to make single page applicatio
  * Vue 3
  * Tailwind 3
 
+## Screenshots
+<img src="https://raw.githubusercontent.com/DominikGos/todo-list/cb8fcf71513b08cb909d8097fa3a2bc476197b1d/public/images/Zrzut%20ekranu%202023-09-17%20165713.png"/>
+<img src="https://raw.githubusercontent.com/DominikGos/todo-list/cb8fcf71513b08cb909d8097fa3a2bc476197b1d/public/images/Zrzut%20ekranu%202023-09-17%20165933.png"/>
+<img src="https://raw.githubusercontent.com/DominikGos/todo-list/cb8fcf71513b08cb909d8097fa3a2bc476197b1d/public/images/Zrzut%20ekranu%202023-09-17%20170047.png"/>
